@@ -1,0 +1,593 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    @apply font-body
+}
+
+@layer base {
+    .cb {
+        @apply border-[1px] border-[#f00]
+    }
+    .full_heigh {
+        @apply min-h-[100vh]
+    }
+    .main_custom_border {
+        @apply flex relative
+        xl:h-[698px] xl:w-[384px] xl:mx-[12px]
+        md:w-full 
+        h-[498px] w-[312px] mb-[24px] 
+        xl:octagon md:octagon_md octagon_sm
+    }
+    .shape_outer {
+        @apply absolute flex flex-shrink-0 h-full w-full bg-poison_green
+        xl:octagon md:octagon_md octagon_sm
+    }
+    .shape_inner {
+        @apply flex w-full justify-center bg-cover xl:p-[40px] md:p-[32px] p-[24px]
+        xl:octagon md:octagon_md octagon_sm
+    }
+    .shape_inner_2 {
+        @apply 
+    }
+    .trapezoid_up_about {
+        @apply absolute flex bg-trapezoid top-0 left-0
+        xl:w-[48px] xl:h-[48px] 
+        md:w-[40px] md:h-[40px]
+        w-[32px] h-[32px]
+        trapezoid_up_module
+    }
+    .trapezoid_down_about {
+        @apply absolute flex bg-trapezoid bottom-0 right-0
+        xl:w-[48px] xl:h-[48px] 
+        md:w-[40px] md:h-[40px]
+        w-[32px] h-[32px]
+        trapezoid_down_module
+    }
+
+    .triangle_dop_inf {
+        @apply absolute flex bg-corner_pop_up top-[-7px] left-[-9px] z-[8003]
+        w-[10px] h-[10px]
+        triangle
+    }
+    /* .trapezoid_up {
+        @apply rotate-[135deg]
+        xl:top-[22px] xl:left-[3px]
+        md:top-[20px] md:left-[1px]
+        top-[15px] left-[1px]
+        trapezoid
+    } */
+    /* .trapezoid_down {
+        @apply rotate-[-45deg]
+        xl:bottom-[22px] xl:right-[3px]
+        md:bottom-[20px] md:right-[1px]
+        bottom-[15px] right-[1px]
+        trapezoid
+    } */
+    .cor {
+        @apply absolute z-[100] 
+        xl:w-[48px] xl:h-[48px]
+        md:w-[40px] md:h-[40px]
+        w-[32px] h-[32px]
+    }
+    .cor_switcher {
+        @apply absolute z-[100] w-[6px] h-[6px]
+    }
+    .cor_icon {
+        @apply absolute z-[100] w-[16px] h-[16px]
+    }
+    .cor_popup {
+        @apply absolute z-[9001] w-[12px] h-[12px]
+    }
+    .corner_portfolio1 {
+        @apply cor top-0 left-0
+        corner_port1
+    }
+    .corner_portfolio2 {
+        @apply cor top-0 right-0
+        corner_port2
+    }
+    .corner_portfolio3 {
+        @apply cor bottom-0 left-0
+        corner_port3
+    }
+    .corner_portfolio4 {
+        @apply cor bottom-0 right-0
+        corner_port4
+    }
+    .corner_up {
+        @apply cor top-0 right-0
+        corner_u
+    }
+    .corner_down {
+        @apply cor bottom-0 left-0
+        corner_d
+    }
+    .corner_up_switcher {
+        @apply cor_switcher top-0 right-0
+        corner_u_switcher
+    }
+    .corner_down_switcher {
+        @apply cor_switcher bottom-0 left-0
+        corner_d_switcher
+    }
+    .corner_up_icon {
+        @apply cor_icon top-0 right-0
+        xl:corner_u_icon md:corner_u_icon_md corner_u_icon_sm
+    }
+    .corner_down_icon {
+        @apply cor_icon bottom-0 left-0
+        xl:corner_d_icon md:corner_d_icon_md corner_d_icon_sm
+    }
+    .corner_popup_tl {
+        @apply cor_popup top-0 left-0
+    }
+    .corner_popup_tr {
+        @apply cor_popup top-0 right-0
+    }
+    .corner_popup_br {
+        @apply cor_popup bottom-0 right-0
+    }
+    .switcher_content {
+        @apply flex w-full justify-between items-center bg-cover switcher_octagon m-[1.1px] p-[3px]
+    }
+    .switcher_back {
+        @apply flex w-full my-[4px] justify-center cursor-pointer duration-700
+        switcher_button_octagon
+    }
+    .switcher_text {
+        @apply w-max font-exo text-[12px] font-semibold
+    }
+    .switcher_text_active {
+        @apply w-max font-exo text-[12px] font-semibold
+    }
+    .header_element {
+        @apply relative flex justify-center items-center h-[48px] xl:w-[169px] md:w-[197px] w-[197px] xl:mr-[88px] text-white p-[10px] cursor-pointer duration-500 hover:text-trapezoid 
+    }
+    .first_page {
+        @apply 
+        background_start
+    }
+    .start_icon {
+        @apply flex xl:h-[64px] md:h-[44px] h-[44px] bg-back_block justify-center items-center opacity-[0.8] hover:opacity-[1] duration-500
+        button_header_octagon
+    }
+    .about_description {
+        @apply text-[18px] text-white leading-[26px] xl:w-[588px] md:w-[90%] w-[90%]
+    }
+    .footer_title {
+        @apply xl:text-[24px] md:text-[18px] text-[16px] text-white md:mb-[16px] mb-[8px] font-bold
+    }
+    .footer_data {
+        @apply xl:text-[18px] md:text-[16px] text-[14px] text-white leading-[26px] font-normal duration-700 cursor-pointer
+    }
+    .form_input {
+        @apply w-full xl:h-full md:h-full h-[48px] bg-back_icon pl-[32px]
+        xl:text-[24px] text-deep_green xl:leading-[32px] font-semibold
+        md:text-[21px] md:leading-[28px]
+        text-[18px] leading-[24px]
+        xl:input_octagon md:octagon_14 button_header_octagon
+    }
+    .custom_animation {
+        @apply duration-1000
+    }
+    /* $(function () {
+        $('input[type="tel"]').mask('+375(00)000-00-00');
+    }); */
+    .mobile_menu {
+        @apply flex justify-center fixed z-[999] w-full h-full bg-back_page pt-[64px]
+    }
+    .about_image{
+        @apply  bg-about_img bg-no-repeat 
+        xl:mt-0 xl:w-[486px] xl:h-[482px] xl:bg-cover xl:octagon 
+        md:mt-[40px] md:h-[390px] md:w-[704px] md:octagon_md
+        relative sm:h-[300px] xx:h-[225px] xz:h-[172px] w-[95%] octagon_sm bg-center md:bg-contain
+    }
+    .service_question_title {
+        @apply 
+        xl:text-[14px] xl:leading-[22px] 
+        md:text-[12px] md:leading-[20px]
+        text-[10px] leading-[18px]
+    }
+    .service_content {
+        @apply 
+        xl:block xl:text-[18px] xl:leading-[26px] 
+        md:grid md:grid-cols-3 md:gap-x-[24px] md:text-[16px] md:leading-[24px]
+        block text-[14px] leading-[22px]
+    }
+    .service_price {
+        @apply w-max 
+        xl:text-[40px] xl:leading-[48px]
+        md:text-[32px] md:leading-[40px]
+        text-[24px] leading-[32px]
+    }
+    .service_user_text {
+        @apply w-max
+        xl:text-[14px] xl:leading-[22px]
+        md:text-[12px] md:leading-[20px]
+        text-[10px] leading-[18px]
+    }
+    .service_button {
+        @apply font-exo uppercase w-max
+        xl:text-[21px] xl:leading-[28px]
+        md:text-[18px] md:leading-[24px]
+        text-[15px] leading-[20px]
+    }
+    .portfolio_selector {
+        @apply font-normal 
+        xl:text-[18px] xl:leading-[26px] 
+        md:text-[16px] md:leading-[24px] 
+        text-[14px] leading-[22px]
+    }
+    .def_size_port {
+        @apply bg-cover bg-no-repeat bg-center
+        xl:h-[282px] 
+        md:h-[158px] md:w-[100%] 
+        h-[145px] w-[312px]
+        hover:port_hover
+    }
+    .port_hover {
+        @apply hover:border-[2px] hover:border-trapezoid
+        /* duration-300  */
+        /* hover:scale-[1.1] */
+    }
+    .slider_size {
+        @apply relative bg-cover bg-no-repeat bg-center duration-700
+        xl:w-[996px] xl:h-[550px] xl:octagon 
+        md:w-[582px] md:h-[327px] md:octagon_md
+        w-[312px] h-[175px] octagon_sm   
+    }
+    .close_slider{
+        @apply absolute w-[48px] h-[48px] right-0 top-0 flex justify-center items-center z-[8000] hover:scale-[1.1]
+    }
+    .button_slider{
+        @apply bg-poison_green
+        xl:w-[96px] xl:h-[64px] xl:p-[2.6px]
+        md:w-[84px] md:h-[56px] md:p-[2.3px]
+        w-[72px] h-[48px] p-[2px]
+    }
+    .style_dop_inf_text{
+        @apply text-white
+        xl:text-[12px] xl:leading-[20px]
+        md:text-[10px] md:leading-[18px]
+        text-[8px] leading-[16px]
+    }
+}
+
+@layer utilities{
+    .octagon {
+        --mar: calc(100% - 48px);
+        clip-path: polygon(
+          48px 0%, 95% 0%, 
+          100% 0%, 100% var(--mar), 
+          var(--mar) 100%, 5% 100%, 
+          0% 100%, 0% 48px);
+    }
+    .octagon_md {
+        --mar: calc(100% - 40px);
+        clip-path: polygon(
+          40px 0%, 95% 0%, 
+          100% 0%, 100% var(--mar), 
+          var(--mar) 100%, 5% 100%, 
+          0% 100%, 0% 40px);
+    }
+    .octagon_sm {
+        --mar: calc(100% - 32px);
+        clip-path: polygon(
+          32px 0%, 95% 0%, 
+          100% 0%, 100% var(--mar), 
+          var(--mar) 100%, 5% 100%, 
+          0% 100%, 0% 32px);
+    }
+    .button_octagon {
+        --mar: calc(100% - 20px);
+        clip-path: polygon(
+            20px 0%, 95% 0%, 
+            100% 0%, 100% var(--mar), 
+            var(--mar) 100%, 5% 100%, 
+            0% 100%, 0% 20px);  
+    }
+    .input_octagon {
+        --mar: calc(100% - 16px);
+        clip-path: polygon(
+            16px 0%, 95% 0%, 
+            100% 0%, 100% var(--mar), 
+            var(--mar) 100%, 5% 100%, 
+            0% 100%, 0% 16px);      
+    }
+    .octagon_14 {
+        --mar: calc(100% - 14px);
+        clip-path: polygon(
+            14px 0%, 95% 0%, 
+            100% 0%, 100% var(--mar), 
+            var(--mar) 100%, 5% 100%, 
+            0% 100%, 0% 14px);      
+    }
+    .button_header_octagon {
+        --mar: calc(100% - 12px);
+        clip-path: polygon(
+            12px 0%, 95% 0%, 
+            100% 0%, 100% var(--mar), 
+            var(--mar) 100%, 5% 100%, 
+            0% 100%, 0% 12px);  
+    }
+    .popup_octagon {
+        --mar: calc(100% - 12px);
+        clip-path: polygon(
+            0% 0%, 100% 0%, 
+            100% 0%, 100% var(--mar), 
+            var(--mar) 100%, 0% 100%, 
+            0% 100%, 0% 0%);  
+    }
+    .switcher_octagon {
+        --mar: calc(100% - 6px);
+        clip-path: polygon(
+            6px 0%, 95% 0%, 
+            100% 0%, 100% var(--mar), 
+            var(--mar) 100%, 5% 100%, 
+            0% 100%, 0% 6px);  
+        
+    }
+    .switcher_button_octagon {
+        --mar: calc(100% - 4px);
+        clip-path: polygon(
+            4px 0%, 95% 0%, 
+            100% 0%, 100% var(--mar), 
+            var(--mar) 100%, 5% 100%, 
+            0% 100%, 0% 4px);        
+    }
+    .corner {
+        --b: 4.5px;   /*thickness of the border*/
+        --c: #00FFFF;   /*color of the border*/
+        --w: 48px;  /*width of border*/
+        
+      
+        border: var(--b) solid #0000; /*space for the border*/
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+          conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),
+          conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p),
+          conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p),
+          conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);
+    }
+    .corner_port1 {
+        --b: 4px;   /*thickness of the border*/
+        --c: #00FFFF;   /*color of the border*/
+        --w: 48px;  /*width of border*/
+        
+      
+        border: var(--b) solid #0000; /*space for the border*/
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+            conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p);
+    }
+    .corner_port2 {
+        --b: 4px;   /*thickness of the border*/
+        --c: #00FFFF;   /*color of the border*/
+        --w: 48px;  /*width of border*/
+        
+      
+        border: var(--b) solid #0000; /*space for the border*/
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+            conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p); 
+    }
+    .corner_port3 {
+        --b: 4px;   /*thickness of the border*/
+        --c: #00FFFF;   /*color of the border*/
+        --w: 48px;  /*width of border*/
+        
+      
+        border: var(--b) solid #0000; /*space for the border*/
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+            conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p);
+    }
+    .corner_port4 {
+        --b: 4px;   /*thickness of the border*/
+        --c: #00FFFF;   /*color of the border*/
+        --w: 48px;  /*width of border*/
+        
+      
+        border: var(--b) solid #0000; /*space for the border*/
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+            conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);    
+    }
+    .corner_u {
+        --b: 4.5px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 48px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .corner_d {
+        --b: 4.5px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 48px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p);
+    }
+    .corner_u_switcher {
+        --b: 1.5px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 6px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .corner_d_switcher {
+        --b: 1.5px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 6px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p);
+    }
+    .corner_u_icon {
+        --b: 4px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 16px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .corner_d_icon {
+        --b: 4px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 16px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p);
+    }
+    .corner_u_icon_md {
+        --b: 3.2px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 14px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .corner_d_icon_md {
+        --b: 3.2px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 14px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p);
+    }
+    .corner_u_icon_sm {
+        --b: 3px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 12px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .corner_d_icon_sm {
+        --b: 3px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 12px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p);
+    }
+    .corner_popup_dop_inf_tl {
+        --b: 1.5px;   /* thickness of the border */
+        --c: #8000FF;   /* color of the border */
+        --w: 12px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 0deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .corner_popup_dop_inf_tr {
+        --b: 1.5px;   /* thickness of the border */
+        --c: #8000FF;   /* color of the border */
+        --w: 12px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .corner_popup_dop_inf_br {
+        --b: 1.5px;   /* thickness of the border */
+        --c: #8000FF;   /* color of the border */
+        --w: 12px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+        conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p);
+    }
+    .switcher_corner {
+        --b: 1.5px;   /* thickness of the border */
+        --c: #00FFFF;   /* color of the border */
+        --w: 6px;  /* width of border */
+        
+      
+        border: var(--b) solid #0000; /* space for the border */
+        --_g: #0000 90deg,var(--c) 0;
+        --_p: var(--w) var(--w) border-box no-repeat;
+        background:
+          /*conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),*/
+          conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g)) 100% 0    / var(--_p),
+          conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--_g)) 0    100% / var(--_p);
+          /*conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);*/
+    }
+    .trapezoid_module {
+        clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)
+    }
+    .trapezoid_up_module {
+        clip-path: polygon(80% 0, 90% 40%, 40% 90%, 0 80%);
+    }
+    .trapezoid_down_module {
+        clip-path: polygon(60% 10%, 100% 20%, 20% 100%, 10% 60%); 
+    }
+    .triangle {
+        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    }
+    .background_start {
+        background: linear-gradient(180deg, rgba(25, 11, 38, 0) 90%, #190B26 100%),
+        url('./image/Frame.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
