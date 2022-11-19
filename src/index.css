@@ -129,6 +129,7 @@ html {
     .corner_popup_br {
         @apply cor_popup bottom-0 right-0
     }
+    /*  */
     .switcher_content {
         @apply flex w-full justify-between items-center bg-cover switcher_octagon m-[1.1px] p-[3px]
     }
