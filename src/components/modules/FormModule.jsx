@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { Link } from "react-scroll"
 import axios from "axios"
+import { IMaskInput } from 'react-imask'
 
 import darkSide from "../../darkSide"
 import cal from "../../icon/cal.png"
@@ -10,6 +11,7 @@ import type_serv from "../../icon/type_serv.png"
 const FormModule = ({send}) => {
     let box = send
     const content = darkSide.form
+    const PhoneContactMask = '+375(00)000-00-00'
 
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
@@ -30,12 +32,12 @@ const FormModule = ({send}) => {
     const form_data = [name, phone, serv, date]
     const form_hook = [setName, setPhone, setServ, setDate] 
     const form_placeholder = content.forms
-    
+
     useEffect(() => {
         if(serv !== "")
-            setN(1)
+            setN(1)  
 
-    }, [serv, n])
+    }, [serv, n, send, box])
 
     const sendData = async (e) => {
         console.log("hi")
@@ -51,16 +53,11 @@ const FormModule = ({send}) => {
                 text: message
         })
             
-        // setName('')
-        // setPhone('')
-        // setServ('')
-        // setDate('')
+        setName('')
+        setPhone('')
+        setServ('')
+        setDate('')
         setN(0)
-    }
-
-    const handler = (e) => {
-        // e.event.preventdefault()
-        sendData()
     }
 
     const open_pop_up = () => { //calendar
@@ -69,7 +66,7 @@ const FormModule = ({send}) => {
 
     return (
         <div className="relative xl:w-[486px] w-[100%] xl:h-[464px] md:h-[400px] h-[336px]">
-            <form onSubmit={handler}>
+            <form>
             <div className="absolute h-full w-full bg-poison_green p-[2.9px] xl:octagon md:octagon_md octagon_sm">
                 <div className={"corner_up"}></div>
                 <div className={"corner_down"}></div>    
@@ -83,12 +80,14 @@ const FormModule = ({send}) => {
                                     <div className="w-full h-full bg-poison_green xl:p-[2.7px] md:p-[2.5px] p-[2.3px] xl:input_octagon md:octagon_14 button_header_octagon">
                                             <div className="relative w-full h-full bg-back_block xl:input_octagon md:octagon_14 button_header_octagon">
                                                 { index === 1 ?
-                                                    <input
+                                                    <IMaskInput
+                                                        id="phone_input"
+                                                        mask={PhoneContactMask}
                                                         key={index}
                                                         className="form_input"
                                                         value={form_data[index]}
                                                         onChange={e => form_hook[index](e.target.value)}
-                                                        type="tel"
+                                                        type="text"
                                                         placeholder={item}
                                                         required={true}
                                                     />  
@@ -150,7 +149,7 @@ const FormModule = ({send}) => {
                             ))
                         }
                     </div>
-                    <button className="cursor-pointer w-full">
+                    <button className="cursor-pointer w-full" type="submit" onClick={sendData}>
                         <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
                             <div className="font-exo xl:text-[24px] md:text-[21px] text-[18px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">
                                 {content.button}
