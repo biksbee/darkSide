@@ -32,14 +32,14 @@ html {
         @apply 
     }
     .trapezoid_up_about {
-        @apply absolute flex bg-trapezoid top-0 left-0
+        @apply absolute flex bg-trapezoid top-0 left-0 z-[1]
         xl:w-[48px] xl:h-[48px] 
         md:w-[40px] md:h-[40px]
         w-[32px] h-[32px]
         trapezoid_up_module
     }
     .trapezoid_down_about {
-        @apply absolute flex bg-trapezoid bottom-0 right-0
+        @apply absolute flex bg-trapezoid bottom-0 right-0 z-[1]
         xl:w-[48px] xl:h-[48px] 
         md:w-[40px] md:h-[40px]
         w-[32px] h-[32px]
@@ -173,9 +173,6 @@ html {
     .custom_animation {
         @apply duration-1000
     }
-    /* $(function () {
-        $('input[type="tel"]').mask('+375(00)000-00-00');
-    }); */
     .mobile_menu {
         @apply flex justify-center fixed z-[999] w-full h-full bg-back_page pt-[64px]
     }
@@ -253,6 +250,18 @@ html {
         xl:text-[12px] xl:leading-[20px]
         md:text-[10px] md:leading-[18px]
         text-[8px] leading-[16px]
+    }
+    .time_block {
+        @apply flex items-center justify-center
+        xl:w-[112px] xl:h-[64px]
+        md:w-[96px] md:h-[56px]
+        w-[84px] h-[48px]
+    }
+    .time_day_week {
+        @apply cursor-pointer
+        xl:text-[24px] xl:leading-[29.26px] 
+        md:text-[18px] md:leading-[21.94px] 
+        text-[16px] leading-[19.5px]
     }
 }
 

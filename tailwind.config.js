@@ -53,6 +53,8 @@ module.exports = {
         'special_pop_up': 'rgba(0, 0, 0, 0.9)',
         'border_dop_inf': '#604080',
         'corner_pop_up': '#8000FF',
+        'calendar_border': '#009E9E',
+
       }
     },
   },

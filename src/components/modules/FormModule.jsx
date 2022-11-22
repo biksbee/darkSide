@@ -8,16 +8,17 @@ import cal from "../../icon/cal.png"
 import type_serv from "../../icon/type_serv.png"
 
 
-const FormModule = ({send}) => {
+const FormModule = ({send, open_calendar}) => {
     let box = send
     const content = darkSide.form
-    const PhoneContactMask = '+375(00)000-00-00'
+    const PhoneContactMask = `+375(00)000-00-00-00`
 
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
-    const [serv, setServ] = useState(send)
+    const [serv, setServ] = useState(box)
     const [date, setDate] = useState('')
     const [n, setN] = useState(0)
+    const [ch, setCh] = useState(true)
 
     useEffect(() => {
         if(send !== "")
@@ -39,8 +40,14 @@ const FormModule = ({send}) => {
 
     }, [serv, n, send, box])
 
-    const sendData = async (e) => {
-        console.log("hi")
+    const checkData = () => {
+        if(name !== "" && phone !== "" && box !== "")
+            sendData()
+        else    
+            showEror()
+    }
+
+    const sendData = () => {
         let message = `<b>Заявка с сайта!</b>\n`;
         message += `<b>Имя: </b> ${name}\n`;
         message += `<b>Телефон: </b> ${phone}\n`;
@@ -60,8 +67,15 @@ const FormModule = ({send}) => {
         setN(0)
     }
 
-    const open_pop_up = () => { //calendar
+    const showEror = () => {
+        setCh(false)
+        setTimeout(() => {
+            setCh(true)
+        }, 500)        
+    }
 
+    const open_pop_up = () => { //calendar
+        open_calendar(true)
     }
 
     return (
@@ -77,7 +91,7 @@ const FormModule = ({send}) => {
                                 <div key={index} className="relative xl:h-[64px] md:h-[56px] h-[48px] flex justify-center items-center xl:mb-[16px] md:mb-[14px] mb-[12px]">
                                     <div className="h-full corner_up_icon"></div>
                                     <div className="h-full corner_down_icon"></div>
-                                    <div className="w-full h-full bg-poison_green xl:p-[2.7px] md:p-[2.5px] p-[2.3px] xl:input_octagon md:octagon_14 button_header_octagon">
+                                    <div id="show_er" className={`w-full h-full ${ch === true ? "bg-poison_green" : "bg-red-600"}  xl:p-[2.7px] md:p-[2.5px] p-[2.3px] xl:input_octagon md:octagon_14 button_header_octagon`}>
                                             <div className="relative w-full h-full bg-back_block xl:input_octagon md:octagon_14 button_header_octagon">
                                                 { index === 1 ?
                                                     <IMaskInput
@@ -149,7 +163,7 @@ const FormModule = ({send}) => {
                             ))
                         }
                     </div>
-                    <button className="cursor-pointer w-full" type="submit" onClick={sendData}>
+                    <button className="cursor-pointer w-full" type="submit" onClick={checkData}>
                         <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
                             <div className="font-exo xl:text-[24px] md:text-[21px] text-[18px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">
                                 {content.button}

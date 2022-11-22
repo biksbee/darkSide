@@ -1,9 +1,10 @@
-import React from "react"
+import React, {useState} from "react"
 
 import darkSide from "../../darkSide"
 import IconsModule from "../modules/IconsModule"
 import FormModule from "../modules/FormModule"
 import ContactsModule from "../modules/ContactsModule"
+import Calendar from "../calendar/calendar"
 
 
 const Contacts = ({submit}) => {
@@ -11,11 +12,18 @@ const Contacts = ({submit}) => {
     const content = darkSide.form
     const box_type = submit
 
+    const [open_calendar, setOpen_calendar] = useState(false)
+
+    const open_cal = (e) => {
+        setOpen_calendar(e)
+        console.log("calendar = " + open_calendar)
+    }
+
     return (
         <div id="cont" className="flex justify-center w-full py-[200px]">
             <div className="xl:flex block justify-between xl:w-[1200px] w-[90%]">
                 <div className="xl:block md:hidden hidden">
-                    <FormModule send={box_type}/>
+                    <FormModule send={box_type} open_calendar={open_cal}/>
                 </div>
                 <div className="xl:flex block xl:w-[588px] w-[90%] justify-between">
                     <div className="lx:pb-0 md:pb-[40px] pb-[32px]">
@@ -43,9 +51,10 @@ const Contacts = ({submit}) => {
                     </div>
                 </div>
                 <div className="xl:hidden md:visible">
-                    <FormModule send={box_type}/>
+                    <FormModule send={box_type} open_calendar={open_cal}/>
                 </div>
             </div>        
+            <Calendar show={open_calendar} setShow={setOpen_calendar}/> 
         </div>
     )
 }
