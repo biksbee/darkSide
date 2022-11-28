@@ -3,12 +3,11 @@ import React, {useState, useEffect} from "react"
 import close from "../../icon/close.png"
 import darkSide from "../../darkSide"
 
-const CheckData = ({i}) => {
+const CheckData = ({i, send_ans}) => {
 
     const content = darkSide.form.forms
     const text = [i.name, i.phone, i.box, i.time]
 
-    console.log("SHOW IN CHECKDATA = " + i.show)
     useEffect(() => {
         document.addEventListener("click", function(e){
             var x = e.clientX;
@@ -26,7 +25,7 @@ const CheckData = ({i}) => {
     }, []) 
 
     const user_answer = () => {
-        i.setAns(true)
+        send_ans(true)
         i.setShow(false)
     }
 

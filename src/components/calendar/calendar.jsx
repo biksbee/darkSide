@@ -76,9 +76,10 @@ const Calendar = ({show, setShow, choose_time}) => {
         console.log("month = " + current_month)
         const month = current_month + 1
         const val = dd + '-' + month + '-' + '|' + tt + '|'
+        choose_time(val)
+        console.log(val)
         setDd('')
         setTt('')
-        choose_time(val)
         setShow(false)
     }
 

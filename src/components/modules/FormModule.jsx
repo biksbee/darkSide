@@ -58,17 +58,15 @@ const FormModule = ({send, open_calendar, chose_user_date}) => {
 
     const checkData = () => {
         if(name !== "" && phone !== "" && box !== "" && time !== ""){
-            console.log("ENTER ENTER ENTER")
             setShow(true)
-            console.log("SHOW = " + show)
         } else    
             showEror()
     }
 
-    useEffect(() => {
-        if(ans === true)
+    const call_send = (e) =>{
+        if(e === true)
             sendData()
-    }, [ans])
+    }
 
     const sendData = () => {
         let message = `<b>Заявка с сайта!</b>\n`;
@@ -77,11 +75,11 @@ const FormModule = ({send, open_calendar, chose_user_date}) => {
         message += `<b>Услуга: </b> ${box}\n`;
         message += `<b>Дата время: </b> ${date}\n`;
 
-        // axios.post(URI_API, {
-        //     chat_id: CHAT_ID,
-        //     parse_mode: 'html',
-        //         text: message
-        // })
+        axios.post(URI_API, {
+            chat_id: CHAT_ID,
+            parse_mode: 'html',
+                text: message
+        })
         setName('')
         setPhone('')
         setServ('')
@@ -210,7 +208,7 @@ const FormModule = ({send, open_calendar, chose_user_date}) => {
                 <div className={"trapezoid_up_about"}></div> 
                 <div className={"trapezoid_down_about"}></div>
             </div>
-            <CheckData i={{show, setShow, name, phone, box, time, setAns, ans}}/>
+            <CheckData i={{show, setShow, name, phone, box, time, setAns, ans}} send_ans={call_send}/>
         </div>
     )
 }
