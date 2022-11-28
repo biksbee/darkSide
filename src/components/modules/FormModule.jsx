@@ -73,7 +73,7 @@ const FormModule = ({send, open_calendar, chose_user_date}) => {
         message += `<b>Имя: </b> ${name}\n`;
         message += `<b>Телефон: </b> ${phone}\n`;
         message += `<b>Услуга: </b> ${box}\n`;
-        message += `<b>Дата время: </b> ${date}\n`;
+        message += `<b>Дата время: </b> ${time}\n`;
 
         axios.post(URI_API, {
             chat_id: CHAT_ID,
