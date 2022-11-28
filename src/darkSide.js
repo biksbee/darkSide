@@ -160,9 +160,10 @@ const darkSide = {
         preTitle: "Наши контакты",
         description: "Заполните форму бронирования и мы перезвоним вам для подтверждения заявки. Для консультации свяжитесь с нами используя контактные данные, указанные ниже.",
         inf: [
-            "info@darside.com",
-            "+375 (29) 123-45-67",
-            "Пн - Пт: 9:00-17:00",
+            "darkside7studio",
+            // "darkside7studio@gmail.com",
+            "+375 44 722 1327",
+            "Пн - Пт: 10:00-22:00",
             "г. Гомель, ул. Советская 196"
         ],
         forms: [
@@ -180,7 +181,17 @@ const darkSide = {
         links: ["Юридическая информация", "Управление cookie-файлами", "Политика конфиденциальности", "Правила и условия", "Источники"],
         hrefs: [],
         privasy: "© 2022 Darkside. Все права защищены."    
-    } 
+    }, 
+    link: {
+        inst: "https://www.instagram.com/darkside7studio/",
+        vk: "https://vk.com/public216975090",
+        tg: "https://t.me/darkside7studio?domain",
+        tik: "https://www.tiktok.com/@darkside7studio",
+        mail: "mailto:darkside7studio@gmail.com",
+        number: "tel:+375447221327",
+        geo: "https://goo.gl/maps/iYUD4sdj2c26GeWp8"
+
+    }
 }
 
 export default darkSide

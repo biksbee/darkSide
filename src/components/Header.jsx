@@ -93,9 +93,13 @@ const Header = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </Link>     
+                    <div className="flex justify-center w-full">
+                        <div className="w-[704px]">
                             <IconsModule submit={true}/>
                         </div>
-                    </Link>        
+                    </div>   
                 </div>    
             </div>
 

@@ -6,19 +6,29 @@ import { IMaskInput } from 'react-imask'
 import darkSide from "../../darkSide"
 import cal from "../../icon/cal.png"
 import type_serv from "../../icon/type_serv.png"
+import CheckData from "../contacts/CheckData" 
 
-
-const FormModule = ({send, open_calendar}) => {
+const FormModule = ({send, open_calendar, chose_user_date}) => {
     let box = send
+    let time = chose_user_date
     const content = darkSide.form
     const PhoneContactMask = `+375(00)000-00-00-00`
 
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [serv, setServ] = useState(box)
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState(time)
     const [n, setN] = useState(0)
+    const [t, setT] = useState(1)
     const [ch, setCh] = useState(true)
+    const [show, setShow] = useState(false)
+    const [ans, setAns] = useState(false)
+
+    useEffect(() => {
+        if(chose_user_date !== "")
+            setT(0)    
+    }, [date, chose_user_date, time])
+
 
     useEffect(() => {
         if(send !== "")
@@ -40,12 +50,25 @@ const FormModule = ({send, open_calendar}) => {
 
     }, [serv, n, send, box])
 
+    useEffect(() => {
+        if(date !== "")
+            setT(0)  
+
+    }, [date, t, chose_user_date, time])
+
     const checkData = () => {
-        if(name !== "" && phone !== "" && box !== "")
-            sendData()
-        else    
+        if(name !== "" && phone !== "" && box !== "" && time !== ""){
+            console.log("ENTER ENTER ENTER")
+            setShow(true)
+            console.log("SHOW = " + show)
+        } else    
             showEror()
     }
+
+    useEffect(() => {
+        if(ans === true)
+            sendData()
+    }, [ans])
 
     const sendData = () => {
         let message = `<b>Заявка с сайта!</b>\n`;
@@ -54,17 +77,17 @@ const FormModule = ({send, open_calendar}) => {
         message += `<b>Услуга: </b> ${box}\n`;
         message += `<b>Дата время: </b> ${date}\n`;
 
-        axios.post(URI_API, {
-            chat_id: CHAT_ID,
-            parse_mode: 'html',
-                text: message
-        })
-            
+        // axios.post(URI_API, {
+        //     chat_id: CHAT_ID,
+        //     parse_mode: 'html',
+        //         text: message
+        // })
         setName('')
         setPhone('')
         setServ('')
         setDate('')
         setN(0)
+        setT(1)
     }
 
     const showEror = () => {
@@ -80,7 +103,6 @@ const FormModule = ({send, open_calendar}) => {
 
     return (
         <div className="relative xl:w-[486px] w-[100%] xl:h-[464px] md:h-[400px] h-[336px]">
-            <form>
             <div className="absolute h-full w-full bg-poison_green p-[2.9px] xl:octagon md:octagon_md octagon_sm">
                 <div className={"corner_up"}></div>
                 <div className={"corner_down"}></div>    
@@ -106,7 +128,7 @@ const FormModule = ({send, open_calendar}) => {
                                                         required={true}
                                                     />  
                                                     :  
-                                                    index !== 2 ? 
+                                                    index === 0 ? 
                                                         <input
                                                             key={index}
                                                             className="form_input"
@@ -117,26 +139,40 @@ const FormModule = ({send, open_calendar}) => {
                                                             required={true}
                                                         />
                                                         : 
-                                                        <Link 
-                                                            to={"serv"} 
-                                                            spy={true} 
-                                                            smooth={true} 
-                                                            offset={50} 
-                                                            duration={500} 
-                                                        >
-                                                            <div className="h-full flex items-center">
+                                                        index === 2 ?
+                                                            <Link 
+                                                                to={"serv"} 
+                                                                spy={true} 
+                                                                smooth={true} 
+                                                                offset={50} 
+                                                                duration={500} 
+                                                            >
+                                                                <div className="h-full flex items-center">
+                                                                    {
+                                                                        n === 0 ?
+                                                                            <div className="form_input text-turbid_grey flex items-center">
+                                                                                {form_placeholder[index]}
+                                                                            </div>
+                                                                        :
+                                                                            <div className="form_input flex items-center">
+                                                                                {box}
+                                                                            </div>         
+                                                                    }
+                                                                </div>
+                                                            </Link>
+                                                        :
+                                                            <div className="h-full flex items-center cursor-pointer" onClick={open_pop_up}>
                                                                 {
-                                                                    n === 0 ?
+                                                                    t !== 0 ?
                                                                         <div className="form_input text-turbid_grey flex items-center">
                                                                             {form_placeholder[index]}
                                                                         </div>
                                                                     :
                                                                         <div className="form_input flex items-center">
-                                                                            {box}
+                                                                            {time}
                                                                         </div>         
                                                                 }
-                                                            </div>
-                                                        </Link>        
+                                                            </div>              
                                                 }
                                                 {
                                                     index === 2 ?
@@ -163,7 +199,7 @@ const FormModule = ({send, open_calendar}) => {
                             ))
                         }
                     </div>
-                    <button className="cursor-pointer w-full" type="submit" onClick={checkData}>
+                    <button className="cursor-pointer w-full" onClick={checkData}>
                         <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
                             <div className="font-exo xl:text-[24px] md:text-[21px] text-[18px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">
                                 {content.button}
@@ -174,7 +210,7 @@ const FormModule = ({send, open_calendar}) => {
                 <div className={"trapezoid_up_about"}></div> 
                 <div className={"trapezoid_down_about"}></div>
             </div>
-                </form>
+            <CheckData i={{show, setShow, name, phone, box, time, setAns, ans}}/>
         </div>
     )
 }
