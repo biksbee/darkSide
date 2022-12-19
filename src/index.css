@@ -16,7 +16,7 @@ html {
     .main_custom_border {
         @apply flex relative
         xl:h-[698px] xl:w-[384px] xl:mx-[12px]
-        md:w-full 
+        md:w-full md:h-[590px]
         h-[498px] w-[312px] mb-[24px] 
         xl:octagon md:octagon_md octagon_sm
     }
@@ -138,10 +138,10 @@ html {
         switcher_button_octagon
     }
     .switcher_text {
-        @apply w-max font-exo text-[12px] font-semibold
+        @apply w-max font-exo text-[12px] font-bold
     }
     .switcher_text_active {
-        @apply w-max font-exo text-[12px] font-semibold
+        @apply w-max font-exo text-[12px] font-bold
     }
     .header_element {
         @apply relative flex justify-center items-center h-[48px] xl:w-[169px] md:w-[197px] w-[197px] xl:mr-[88px] text-white p-[10px] cursor-pointer duration-500 hover:text-trapezoid 
@@ -174,7 +174,7 @@ html {
         @apply duration-1000
     }
     .mobile_menu {
-        @apply flex justify-center fixed z-[999] w-full h-full bg-back_page pt-[64px]
+        @apply flex justify-center fixed z-[999] w-full h-full bg-back_page pt-[64px] duration-700
     }
     .about_image{
         @apply  bg-about_img bg-no-repeat 
@@ -189,7 +189,7 @@ html {
         text-[10px] leading-[18px]
     }
     .service_content {
-        @apply 
+        @apply
         xl:block xl:text-[18px] xl:leading-[26px] 
         md:grid md:grid-cols-3 md:gap-x-[24px] md:text-[16px] md:leading-[24px]
         block text-[14px] leading-[22px]

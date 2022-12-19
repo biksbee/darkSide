@@ -13,7 +13,7 @@ module.exports = {
     },
     fontFamily: {
       body: ['Montserrat Alternates'],
-      exo: ['Exo+2']
+      exo: ['Exo\\ 2']
     },
     extend: {
       backgroundImage: {
@@ -40,7 +40,9 @@ module.exports = {
         'hover_poison_green': 'rgba(0, 255, 255, 0.8)',
         'deep_green': 'rgba(0, 255, 255, 0.78)',
         'trapezoid': '#0FF',
+        'trapezoid_blur': 'rgba(10, 155, 155, 0.1)',
         'back_block': 'rgb(0, 26, 26)',
+        'back_block_blur': 'rgba(0, 25, 15, 0.5)',
         'deep_grey': 'rgba(255, 255, 255, 0.74)',
         'turbid_grey': 'rgba(255, 255, 255, 0.6)',
         'turbid_black': 'rgba(0, 0, 0, 0.87)',
@@ -54,7 +56,9 @@ module.exports = {
         'border_dop_inf': '#604080',
         'corner_pop_up': '#8000FF',
         'calendar_border': '#009E9E',
-
+      },
+      dropShadow: {
+        pressed: '0px 28px 0px -3px rgba(255,0,0,0.75)'
       }
     },
   },

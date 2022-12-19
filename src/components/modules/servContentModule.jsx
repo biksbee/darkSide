@@ -1,13 +1,15 @@
 import React, {useState} from "react"
 import { Link } from "react-scroll"
 
+
 import darkSide from "../../darkSide"
 import SwitcherModule from "./switcherModule"
 import DopInfModules from "./dopInfModules"
 
 import whiteI from "../../icon/whiteI.png"
 import blackI from "../../icon/blackI.png"
-
+import vectorDown from "../../icon/vectorDown.svg"
+import vectorDownBlack from "../../icon/vectorDownBlack.svg"
 
 const ServContentModule = ({style, type_box}) => {
     const num = style    
@@ -42,7 +44,6 @@ const ServContentModule = ({style, type_box}) => {
     return (
         <div className="absolute z-[50] xl:w-[304px] md:w-[90%]">
             <div className="relative h-[24px] w-[100%] md:mb-[16px] mb-[8px]">
-                {/* <div className={num !== 2 ? "border-[1px] border-[#000] absolute z-[100] h-full w-full box-border inline-flex switcher_corner" : null}></div> */}
                 <div className={num !== 2 ? "corner_up_switcher" : null}></div>
                 <div className={num !== 2 ? "corner_down_switcher" : null}></div>
                 <div className="flex flex-shrink-0 h-full w-full bg-poison_green switcher_octagon">
@@ -56,32 +57,44 @@ const ServContentModule = ({style, type_box}) => {
                     {blockContent.title}
                 </div>
             </div>
-            <div className="xl:h-[336px] md:h-[156px] h-[264px]">
-                <div className="xl:h-[238px]">
-                    <div className={num !== 2 ? "service_question_title text-deep_grey" : "service_question_title text-less_turbid_black"}>
+            <div className="xl:h-[336px] md:h-[256px] h-[264px]">
+                <div className="xl:h-[218px]">
+                    <div className={num !== 2 ? "service_question_title text-white mb-[10px]" : "service_question_title text-less_turbid_black mb-[10px]"}>
                         {blockContent.question_title[0]}
                     </div>
-                    <ul className={num !== 2 ? "service_content text-white" : "service_content text-turbid_black"}>
-                        {blockContent.list_serv[0][treker].map((item, index) => (
-                            <div key={index} className="flex items-center">
-                                <li className="list-disc ml-[30px]">{item}</li>
-                                <DopInfModules submit={num} detect={treker} cheker={index}/>
-                            </div>
-                        ))}
-                    </ul>
+                    <div className="xl:h-[188px] md:h-[72px] h-[120px] relative overflow-scroll ">
+                    <ul className={num !== 2 ? "service_content text-white bg-back_block_blur" : "service_content text-turbid_black bg-trapezoid_blur"}>
+                            {blockContent.list_serv[0][treker].map((item, index) => (
+                                    <div key={index} className="flex items-center drop-shadow-pressed">
+                                        <li className="list-disc ml-[30px]">{item}</li>
+                                        <DopInfModules submit={num} detect={treker} cheker={index}/>
+                                    </div>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 </div>
                 <div className="">
-                    <div className={num !== 2 ? "service_question_title text-deep_grey" : "service_question_title text-less_turbid_black"}>
+                    <div className={num !== 2 ? "service_question_title text-white my-[10px]" : "service_question_title text-less_turbid_black mb-[10px]"}>
                         {blockContent.question_title[1]}
                     </div>
-                    <ul className={num !== 2 ? "service_content text-white " : "service_content text-turbid_black"}>
-                        {blockContent.list_serv[1][treker].map((item, index) => (
-                            <div key={index} className="flex items-center">
-                                <li className="list-disc ml-[30px]">{item}</li>
-                                <DopInfModules submit={num} detect={treker} cheker={index}/>
-                            </div>
-                        ))}
-                    </ul>
+                    <div className={`${num !== 2 ? 'border-trapezoid' : 'border-turbid_black' } relative h-[70px] overflow-scroll border-b-[1px]`}>
+                        <div className={`${num !== 2 ? 'border-white' : 'border-black'} absolute animate-bounce bottom-0 right-10 border-[1px] rounded-full p-[2.5px]`}>
+                            {num !== 2 ? 
+                                <img src={vectorDown} alt={"icon"}/> 
+                            :
+                                <img src={vectorDownBlack} alt={"icon"}/>
+                            }
+                        </div>
+                        <ul className={num !== 2 ? "service_content text-white bg-back_block_blur" : "service_content text-turbid_black bg-trapezoid_blur"}>
+                            {blockContent.list_serv[1][treker].map((item, index) => (
+                                <div key={index} className="flex items-center">
+                                    <li className="list-disc ml-[30px]">{item}</li>
+                                    <DopInfModules submit={num} detect={treker} cheker={index}/>
+                                </div>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div className="flex w-full justify-center mb-[16px] xl:mt-[24px] md:mt-[16px] mt-0">

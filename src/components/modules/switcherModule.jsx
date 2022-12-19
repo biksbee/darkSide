@@ -20,7 +20,7 @@ const SwitcherModule = ({n, submit}) => {
             {
                 active ?
                     <div className={num !== 2 ? "switcher_back bg-trapezoid" : "switcher_back bg-turbid_black"}
-                        onClick={switcher}
+                        onClick={num !== 2 ? switcher : null}
                     >
                         <div className={num !== 2 ? "switcher_text_active text-black" : "switcher_text_active text-trapezoid"}>
                             MAX
@@ -28,7 +28,7 @@ const SwitcherModule = ({n, submit}) => {
                     </div>
                 :     
                     <div className={num !== 2 ? "switcher_back opacity-[0.38] hover:opacity-[1]" : "switcher_back opacity-[0.38] hover:opacity-[1]"}
-                        onClick={switcher}
+                        onClick={num !== 2 ? switcher : null}
                     >
                         <div className={num !== 2 ? "switcher_text_active text-trapezoid" : "switcher_text_active text-black"}>
                             MAX
@@ -37,19 +37,19 @@ const SwitcherModule = ({n, submit}) => {
             }
             {
                 !active ? 
-                    <div className={num !== 2 ? "switcher_back bg-trapezoid" : "switcher_back bg-turbid_black"}
+                    <div className={num !== 2 ? "switcher_back bg-trapezoid" : num === 2 ? null :  "switcher_back bg-turbid_black"}
                         onClick={switcher}
                     >
-                        <div className={num !== 2 ? "switcher_text text-turbid_black" : "switcher_text text-trapezoid"}>
-                            LIGHT
+                        <div className={num !== 2 ? "switcher_text text-turbid_black" : num === 2 ? null :  "switcher_text text-trapezoid"}>
+                            {num === 2 ? null : "LIGHT"}
                         </div>
                     </div>
                 :
-                    <div className={num !== 2 ? "switcher_back opacity-[0.38] hover:opacity-[1]" : "switcher_back bg-trapezoid opacity-[0.38] hover:opacity-[1]"}
+                    <div className={num !== 2 ? "switcher_back opacity-[0.38] hover:opacity-[1]" :  num === 2 ? null : "switcher_back bg-trapezoid hover:opacity-[1]"}
                         onClick={switcher}
                     >
-                        <div className={num !== 2 ? "switcher_text text-trapezoid" : "switcher_text text-back_page"}>
-                            LIGHT
+                        <div className={num !== 2 ? "switcher_text text-trapezoid" : num === 2 ? null : "switcher_text text-black"}>
+                            {num === 2 ? null : "LIGHT"}
                         </div>
                     </div>
             }

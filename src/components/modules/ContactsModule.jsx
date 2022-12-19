@@ -25,7 +25,7 @@ const ContactsModule = ({checker}) => {
                         key={index} 
                         className="flex cursor-pointer"
                     >
-                        <a href={hrefs[index]} className="flex" target="_blank">
+                        <a href={index !== 2 ? hrefs[index] : null} className="flex" target="_blank">
                             <div className={`flex justify-center items-center mr-[8px] mb-[8px] xl:w-[26px] md:w-[24px] w-[22px]`}>
                                 <img src={item} />
                             </div>

@@ -1,8 +1,8 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { Link } from "react-scroll"
 
 import darkSide from "../darkSide"
-import logo from "../image/logo2.png"
+import logo from "../image/logo2.svg"
 import menu from "../icon/menu.png"
 import close from "../icon/close.png"
 import LiModule from "./modules/LiModule"
@@ -14,17 +14,18 @@ const Header = () => {
     const [show, setShow] = useState(false)
     const [active, setActive] = useState(false)
     const [open, setOpen] = useState(false)
+    const [bottomMon, setBottomMon] = useState('-100%')
 
     var scrollPrev = window.pageYOffset;
     const showNav = () => {
         var scrollCur = window.pageYOffset;
-        if(scrollPrev < scrollCur) {
-            setShow(true)
-        } else {
-            setShow(false)
-        }
-        scrollPrev = scrollCur;
-      }
+            if(scrollPrev < scrollCur) {
+                setShow(true) 
+            } else {
+                setShow(false)
+            }
+            scrollPrev = scrollCur;
+    }
     window.addEventListener('scroll', showNav)
 
     const func_close = (data) => {
@@ -35,11 +36,11 @@ const Header = () => {
     }
 
     return (
-        <nav id="header" className={!show ? "fixed xl:bg-transparent bg-back_page w-full h-[78px] z-[1000] top-0 custom_animation" : "fixed z-[1000] w-full h-[80px] top-[-80px] custom_animation"}>
-            <div className="flex justify-between w-full h-full items-center px-[32px]">
+        <nav id="header" className={!show ? "fixed xl:bg-transparent bg-back_page w-full h-[78px] z-[1000] top-0 custom_animation" : "fixed z-[10000] w-full h-[80px] top-[-80px] custom_animation"}>
+            <div id="myBlock" className="flex justify-between w-full h-full items-center px-[32px]">
                 <div className="h-[48px] w-[216px]">
                     <Link to="first" spy={true} smooth={true} offset={50} duration={500}>
-                        <img src={logo} />
+                        <img src={logo} alt={"hi"}/>
                     </Link>
                 </div>
                 <div className="xl:flex hidden">
@@ -51,11 +52,11 @@ const Header = () => {
                         }
                     </ul>
                 </div>
-                <Link className="xl:flex hidden cursor-pointer w-[196px]"
+                <Link className="xl:flex hidden cursor-pointer w-[230px]"
                     to={"serv"} spy={true} smooth={true} offset={50} duration={500}
                 >
                     <div className="flex justify-center w-full bg-trapezoid hover:bg-poison_green duration-700 py-[14px] button_header_octagon">
-                        <div className="font-exo text-[18px] w-max text-turbid_black uppercase font-semibold">
+                        <div className="font-exo xl:text-[18px] md:text-[16px] text-[1px] xl:leading-[24px] md:leading-[20px] leading-[16px] w-max text-turbid_black uppercase font-semibold">
                             {blockContent.button}
                         </div>
                     </div>
@@ -71,7 +72,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <div className={open ? "mobile_menu" : "hidden"}>
+            <div id="mobMenu" className={`${open ? "bottom-[-78px]" : `bottom-[-100%]`} mobile_menu`}>
                 <div className="w-[90%]">
                     <ul>
                         {

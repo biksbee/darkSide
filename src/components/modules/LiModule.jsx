@@ -15,6 +15,7 @@ const LiModule = ({submit, ind, send, detect}) => {
         send(close)
     }
 
+
     return (
         <>
             <Link to={href[index]} spy={true} smooth={true} offset={50} duration={500} onClick={cheker}>

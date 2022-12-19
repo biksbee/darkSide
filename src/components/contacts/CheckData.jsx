@@ -8,6 +8,8 @@ const CheckData = ({i, send_ans}) => {
     const content = darkSide.form.forms
     const text = [i.name, i.phone, i.box, i.time]
 
+    const [complete, setComplete] = useState(false)
+
     useEffect(() => {
         document.addEventListener("click", function(e){
             var x = e.clientX;
@@ -26,7 +28,12 @@ const CheckData = ({i, send_ans}) => {
 
     const user_answer = () => {
         send_ans(true)
-        i.setShow(false)
+        // i.setShow(false)
+        setComplete(true)
+        setTimeout(() => {
+            setComplete(false)
+            i.setShow(false)
+        }, 2000)
     }
 
     const close_slider = () => {
@@ -44,40 +51,53 @@ const CheckData = ({i, send_ans}) => {
                     <div className={"corner_down"}></div>
                     <div className={"trapezoid_up_about"}></div> 
                     <div className={"trapezoid_down_about"}></div>
-                    <div className="bg-back_page w-full h-full xl:octagon md:octagon_md octagon_sm xl:p-[40px] md:p-[32px] p-[24px]">
-                        <div className="flex justify-center items-center mb-[20px]">
-                            <div className="w-max h-max">
-                                {
-                                    text.map((item, index) => (
-                                        <div key={index} className="flex">
-                                            <div className="check_user_text mr-[15px] text-trapezoid">
-                                                {content[index]}
+                    {!complete ? 
+                        <div className="bg-back_page w-full h-full xl:octagon md:octagon_md octagon_sm xl:p-[40px] md:p-[32px] p-[24px]">
+                            <div className="flex justify-center items-center mb-[20px]">
+                                <div className="w-max h-max">
+                                    {
+                                        text.map((item, index) => (
+                                            <div key={index} className="flex">
+                                                <div className="check_user_text mr-[15px] text-trapezoid">
+                                                    {content[index]}
+                                                </div>
+                                                <div className="check_user_text text-white">
+                                                    {item}
+                                                </div>
                                             </div>
-                                            <div className="check_user_text text-white">
-                                                {item}
-                                            </div>
-                                        </div>
-                                    ))
-                                }
+                                        ))
+                                    }
+                                </div>  
                             </div>  
-                        </div>  
-                        <div>    
-                            <div className="cursor-pointer w-full mb-[25px]" onClick={user_answer}> 
-                                <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
-                                    <div className="font-exo xl:text-[20px] md:text-[18px] text-[14px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">    
-                                        ПРИНЯТЬ
+                            <div>    
+                                <div className="cursor-pointer w-full mb-[25px]" onClick={user_answer}> 
+                                    <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
+                                        <div className="font-exo xl:text-[20px] md:text-[18px] text-[14px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">    
+                                            ПРИНЯТЬ
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="cursor-pointer w-full" onClick={close_slider}> 
-                                <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
-                                    <div className="font-exo xl:text-[20px] md:text-[18px] text-[14px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">
-                                        ИЗМЕНИТЬ
+                                <div className="cursor-pointer w-full" onClick={close_slider}> 
+                                    <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
+                                        <div className="font-exo xl:text-[20px] md:text-[18px] text-[14px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">
+                                            ИЗМЕНИТЬ
+                                        </div>
                                     </div>
                                 </div>
+                            </div>    
+                        </div>
+                    :
+                        <div className="bg-back_page flex items-center w-full h-full xl:octagon md:octagon_md octagon_sm xl:p-[40px] md:p-[32px] p-[24px]">
+                           <div className="text-center font-exo xl:text-[40px] md:text-[18px] text-[14px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-trapezoid uppercase font-semibold">
+                                <div className="">
+                                    ВАША ЗАЯВКА    
+                                </div>
+                                <div>
+                                    УСПЕШКО ОТПРАВЛЕНА
+                                </div>
                             </div>
-                        </div>    
-                    </div>
+                        </div>
+                    }                    
                 </div>
             </div>
         </div>

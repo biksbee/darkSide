@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from "react"
 
+
 import close from "../../icon/close.png"
-import vector_right from "../../icon/vector_right.png"
-import vector_left from "../../icon/vector_left.png"
-import vector_left_s from "../../icon/vector_left_s.png"
-import vector_right_s from "../../icon/vector_right_s.png"
-import Time from "./Time"
-import Day from "./Day"
+
+
+
+
+import Year from "./Year"
+import DayPage from "./dayPage"
+import TimePage from "./timePage"
 
 const Calendar = ({show, setShow, choose_time}) => {
 
@@ -17,30 +19,27 @@ const Calendar = ({show, setShow, choose_time}) => {
     const day_of_the_week = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
     const time = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",]
     
+    
     const [current_month, setCurrent_month] = useState(monthNow - 1)
+    const [current_year, setCurrent_year] = useState(year)
 
     const create_days_month = (mon) => {
         const days_array = []
-        const days = new Date(year, mon, 0).getDate()
+        const days = new Date(current_year, mon, 0).getDate()
         for(let i = 1; i<=days; i++)
             days_array.push(i)
         return days_array
     }
     const d = create_days_month(current_month+1)
-    let days_start_month = new Date(year, current_month, 1).getDay()
+    let days_start_month = new Date(current_year, current_month, 1).getDay()
 
     useEffect(() => {
         document.addEventListener("click", function(e){
             var x = e.clientX;
             var y = e.clientY;
             var elementMouseIsOver = document.elementFromPoint(x, y);
-            if(elementMouseIsOver.id=="calendar"){
-                console.log("calendar");
-                console.log("id = " + elementMouseIsOver.id)
+            if(elementMouseIsOver.id === "calendar"){
                 setShow(false)
-            }
-            else{
-                console.log("not calendar");
             }
         })
     }, []) 
@@ -48,38 +47,25 @@ const Calendar = ({show, setShow, choose_time}) => {
     const [dd, setDd] = useState('')
     const [mm, setMm] = useState('')
     const [tt, setTt] = useState('')
+    const [next, setNext] = useState(0)
 
     const close_slider = () => {
         setShow(false)
     }
 
-    const t_left = () => {
-        if(current_month !== 0)
-            setCurrent_month(current_month - 1)
-        else 
-            setCurrent_month(11)
-    }
-    const t_right = () => {
-        if(current_month !== 11)
-            setCurrent_month(current_month + 1)
-        else 
-            setCurrent_month(0)
-    }
 
-    useEffect(() => {
-        if(dd !== '' && tt !== '')
-            sendDate()
-    }, [dd, tt])
+    // useEffect(() => {
+    //     if(dd !== '' && tt !== '')
+    //         sendDate()
+    // }, [dd, tt])
 
     const sendDate = () => {
-        console.log("DD " + dd)
-        console.log("month = " + current_month)
         const month = current_month + 1
-        const val = dd + '-' + month + '-' + '|' + tt + '|'
+        const val = dd + '-' + month + '-' + current_year + '|' + tt + '|'
         choose_time(val)
-        console.log(val)
         setDd('')
         setTt('')
+        setNext(0)
         setShow(false)
     }
 
@@ -95,61 +81,67 @@ const Calendar = ({show, setShow, choose_time}) => {
                     <div className={"trapezoid_up_about"}></div> 
                     <div className={"trapezoid_down_about"}></div>
                     <div className="bg-back_page w-full h-full xl:octagon md:octagon_md octagon_sm xl:p-[40px] md:p-[32px] p-[24px]">
-                            <div className="w-full h-max flex justify-center xl:mb-[8px] md:mb-[4px] mb-[2px]">
-                                <div className="w-max font-bold xl:text-[18px] md:text-[16px] text-[14px] text-trapezoid xl:leading-[26px] md:leading-[24px] leading-[22px]">
-                                    ВЫБЕРИТЕ ДАТУ
+                    <div className="flex w-full justify-between mb-[20px]">
+                        <div className="text-white hover:text-trapezoid opacity-[0.64] portfolio_selector cursor-pointer"
+                            onClick={() => setNext(0)}
+                        >
+                            дата
+                        </div>
+                        <div className="text-white hover:text-trapezoid opacity-[0.64] portfolio_selector cursor-pointer"
+                            onClick={() => setNext(1)}
+                        >
+                            день
+                        </div>
+                        <div className="text-white hover:text-trapezoid opacity-[0.64] portfolio_selector cursor-pointer"
+                            onClick={() => setNext(2)}
+                        >
+                            время
+                        </div>
+                        <div className="text-white hover:text-trapezoid opacity-[0.64] portfolio_selector cursor-pointer"
+                            onClick={() => setNext(3)}
+                        >
+                            готово
+                        </div>
+                    </div>
+                    <div className="">
+                        {next === 0 ? 
+                            <div className="w-full">
+                                <Year setNext={setNext} current_year={current_year} setCurrent_year={setCurrent_year} current_month={current_month} setCurrent_month={setCurrent_month} month_rus={month_rus}/>
+                            </div>
+                        :
+                            null
+                        }
+                        {next === 1 ?
+                            <div className="w-full">
+                                <DayPage setNext={setNext} day_of_the_week={day_of_the_week} days_start_month={days_start_month} setDd={setDd} show={show} d={d} dd={dd} />        
+                            </div>
+                        :
+                            null    
+                        }
+                        {next === 2 ? 
+                            <div className="w-full h-[300px]">
+                                <TimePage setNext={setNext} setTt={setTt} show={show} time={time}/>        
+                            </div>
+                        :
+                            null    
+                        }            
+                    </div>
+                    <div className="w-full flex justify-center mt-[30px]">
+                        <div className="text-[40px] leading-[55px] text-calendar_border">
+                        {current_year}.{current_month+1}.{dd}.{tt}
+                        </div>
+                    </div>
+                    {next === 3 ?
+                        <div className="cursor-pointer w-full mt-[30px]" onClick={sendDate}> 
+                            <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
+                                <div className="font-exo xl:text-[24px] md:text-[21px] text-[18px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">
+                                    ВЫБРАТЬ
                                 </div>
                             </div>
-                            <div className="w-full flex justify-between xl:mb-[8px] md:mb-[4px] mb-0">
-                                <div className="xl:w-[48px] xl:h-[48px] md:w-[40px] md:h-[40px] w-[32px] h-[32px] flex justify-center items-center" onClick={t_left}>
-                                    <img src={vector_left} className="xl:block hidden"/>
-                                    <img src={vector_left_s} className="xl:hidden block"/>
-                                </div>
-                                <div className="w-max font-bold text-white xl:text-[40px] md:text-[32px] text-[24px] xl:leading-[48px] md:leading-[40px] leading-[32px]">
-                                    {month_rus[current_month]}
-                                </div>
-                                <div className="xl:w-[48px] xl:h-[48px] md:w-[40px] md:h-[40px] w-[32px] h-[32px] flex justify-center items-center" onClick={t_right}>
-                                    <img src={vector_right} className="xl:block hidden"/>
-                                    <img src={vector_right_s} className="xl:hidden block"/>
-                                </div>
-                            </div>
-                            <div className="w-full flex">
-                                {
-                                    day_of_the_week.map((item, index) => (
-                                        <div key={index} className="xl:h-[64px] xl:w-[64px] md:w-[56px] md:h-[56px] w-[48px] h-[48px] flex justify-center items-center">
-                                            <div className={`${index < 5 ? "text-footer_line" : "text-calendar_border"} time_day_week`}>
-                                                {item}                                               
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                            <div className="grid grid-cols-7">
-                                {
-                                    d.map((item, index) =>(
-                                        <Day key={index} i={{item, index, days_start_month, show}} get={setDd} />    
-                                    ))
-                                }       
-                            </div>
-                            <div className="w-full h-max flex justify-center">
-                                <div className="w-max font-bold xl:text-[18px] md:text-[16px] text-[14px] text-trapezoid xl:leading-[26px] md:leading-[24px] leading-[22px]">
-                                    ВЫБЕРИТЕ ВРЕМЯ
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-4 xl:mb-[32px] md:mb-[24px] mb-[16px]">
-                                {
-                                    time.map((item, index) => (
-                                        <Time key={index} i={{item, index, show}} set={setTt}/>
-                                    ))
-                                }        
-                            </div>
-                            {/* <div className="cursor-pointer w-full" onClick={sendDate}> 
-                                <div className="flex justify-center w-full bg-trapezoid xl:py-[16px] md:py-[14px] py-[12px] xl:input_octagon md:octagon_14 button_header_octagon hover:bg-poison_green duration-700">
-                                    <div className="font-exo xl:text-[24px] md:text-[21px] text-[18px] xl:leading-[32px] md:leading-[28px] leading-[24px] w-max text-turbid_black uppercase font-semibold">
-                                        ВЫБРАТЬ
-                                    </div>
-                                </div>
-                            </div> */}
+                        </div>
+                    :
+                        null    
+                    }
                     </div>
                 </div>
             </div>
